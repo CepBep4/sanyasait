@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Отзывы - PARADISE{% endblock %}
+
+{% block content %}
+<section class="testimonials-hero">
+    <div class="container">
+        <h1 class="page-title">Отзывы</h1>
+        <p class="page-subtitle">Что говорят наши гости</p>
+    </div>
+</section>
+
+<section class="all-testimonials">
+    <div class="container">
+        <div class="testimonials-grid">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-card">
+                <div class="testimonial-rating">
+                    {% for i in range(testimonial.rating) %}
+                    <span class="star">★</span>
+                    {% endfor %}
+                </div>
+                <p class="testimonial-text">"{{ testimonial.text }}"</p>
+                <div class="testimonial-author">
+                    <strong>{{ testimonial.name }}</strong>
+                    <span class="testimonial-date">{{ testimonial.date }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="add-testimonial">
+    <div class="container">
+        <div class="add-testimonial-content">
+            <h2>Оставить отзыв</h2>
+            <p>Поделитесь своими впечатлениями о посещении PARADISE</p>
+            <form class="testimonial-form" id="testimonialForm">
+                <div class="form-group">
+                    <label for="testimonial-name">Ваше имя *</label>
+                    <input type="text" id="testimonial-name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="testimonial-rating">Оценка *</label>
+                    <div class="rating-input">
+                        <input type="radio" id="star5" name="rating" value="5" checked>
+                        <label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="testimonial-text">Ваш отзыв *</label>
+                    <textarea id="testimonial-text" name="text" rows="5" required placeholder="Расскажите о вашем опыте посещения PARADISE"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('testimonialForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Спасибо за ваш отзыв! После модерации он будет опубликован на сайте.');
+    this.reset();
+});
+</script>
+{% endblock %}
+

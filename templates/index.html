@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - PARADISE{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">PARADISE</h1>
+        <p class="hero-subtitle">От релакса до экстаза</p>
+        <p class="hero-description">Кальянная премиум-класса с изысканным меню и атмосферой</p>
+        <a href="{{ url_for('menu') }}" class="btn btn-primary">Посмотреть меню</a>
+    </div>
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+    </div>
+</section>
+
+<section class="about-preview">
+    <div class="container">
+        <div class="about-preview-content">
+            <div class="about-text">
+                <h2>О кальяне</h2>
+                <p>Кальян — это приятный способ расслабиться. Его правильное использование подарит много удовольствия с введением восточной пикантности. Кальян-мастер направит вас во вкусе, насыщенности и крепости, а также приблизительном времени курения.</p>
+                <p>В PARADISE мы используем только премиальные табаки и ингредиенты, чтобы создать незабываемый опыт для каждого гостя.</p>
+                <a href="{{ url_for('about') }}" class="btn btn-secondary">Узнать больше</a>
+            </div>
+            <div class="about-image">
+                <div class="hookah-icon">
+                    <svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 L40 40 L35 45 L35 120 L65 120 L65 45 L60 40 Z" fill="#fff" opacity="0.9"/>
+                        <circle cx="50" cy="35" r="8" fill="#fff" opacity="0.7"/>
+                        <path d="M35 120 Q50 130 65 120" stroke="#fff" stroke-width="2" fill="none" opacity="0.5"/>
+                        <path d="M30 45 L70 45" stroke="#fff" stroke-width="3" opacity="0.6"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2 class="section-title">Почему PARADISE?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icons/star.svg') }}" alt="Премиум качество">
+                </div>
+                <h3>Премиум качество</h3>
+                <p>Только лучшие табаки и ингредиенты от проверенных производителей</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icons/chef.svg') }}" alt="Опытные мастера">
+                </div>
+                <h3>Опытные мастера</h3>
+                <p>Наши кальян-мастера создадут идеальный кальян специально для вас</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icons/leaf.svg') }}" alt="Разнообразие вкусов">
+                </div>
+                <h3>Разнообразие вкусов</h3>
+                <p>Более 50 уникальных вкусов и комбинаций на любой вкус</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/icons/mask.svg') }}" alt="Атмосфера">
+                </div>
+                <h3>Атмосфера</h3>
+                <p>Уютная обстановка и расслабляющая атмосфера для отличного отдыха</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="menu-preview">
+    <div class="container">
+        <h2 class="section-title">Наше меню</h2>
+        <div class="menu-preview-grid">
+            <div class="menu-preview-card">
+                <h3>CLASSIC</h3>
+                <p>Классические кальяны с проверенными вкусами</p>
+                <a href="{{ url_for('menu') }}#classic" class="btn btn-outline">Смотреть</a>
+            </div>
+            <div class="menu-preview-card">
+                <h3>FAST & FURIOUS</h3>
+                <p>Добавки для крепости - для настоящих ценителей</p>
+                <a href="{{ url_for('menu') }}#fast-furious" class="btn btn-outline">Смотреть</a>
+            </div>
+            <div class="menu-preview-card">
+                <h3>PARADISE SPECIAL</h3>
+                <p>Эксклюзивные кальяны по предзаказу</p>
+                <a href="{{ url_for('menu') }}#paradise-special" class="btn btn-outline">Смотреть</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            {% for stat in stats %}
+            <div class="stat-card">
+                <div class="stat-number">{{ stat.number }}</div>
+                <div class="stat-label">{{ stat.label }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="section-title">Отзывы наших гостей</h2>
+        <div class="testimonials-grid">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-card">
+                <div class="testimonial-rating">
+                    {% for i in range(testimonial.rating) %}
+                    <span class="star">★</span>
+                    {% endfor %}
+                </div>
+                <p class="testimonial-text">"{{ testimonial.text }}"</p>
+                <div class="testimonial-author">
+                    <strong>{{ testimonial.name }}</strong>
+                    <span class="testimonial-date">{{ testimonial.date }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="testimonials-more">
+            <a href="{{ url_for('all_testimonials') }}" class="btn btn-secondary">Все отзывы</a>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-section">
+    <div class="container">
+        <h2 class="section-title">Наша атмосфера</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <img src="{{ url_for('static', filename='images/icons/mask.svg') }}" alt="Уютная зона отдыха">
+                    <p>Уютная зона отдыха</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <img src="{{ url_for('static', filename='images/icons/hookah.svg') }}" alt="Профессиональные кальяны">
+                    <p>Профессиональные кальяны</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <img src="{{ url_for('static', filename='images/icons/tobacco.svg') }}" alt="Премиум табаки">
+                    <p>Премиум табаки</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <img src="{{ url_for('static', filename='images/icons/sparkle.svg') }}" alt="Эксклюзивные смеси">
+                    <p>Эксклюзивные смеси</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Готовы начать свой райский опыт?</h2>
+            <p>Забронируйте столик прямо сейчас и окунитесь в мир незабываемых вкусов</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('contacts') }}" class="btn btn-primary">Связаться с нами</a>
+                <a href="{{ url_for('menu') }}" class="btn btn-outline">Посмотреть меню</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

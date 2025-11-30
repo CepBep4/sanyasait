@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Контакты - PARADISE{% endblock %}
+
+{% block content %}
+<section class="contacts-hero">
+    <div class="container">
+        <h1 class="page-title">Контакты</h1>
+        <p class="page-subtitle">Свяжитесь с нами или забронируйте столик</p>
+    </div>
+</section>
+
+<section class="contacts-content">
+    <div class="container">
+        <div class="contacts-grid">
+            <div class="contact-info">
+                <h2>Наши контакты</h2>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="{{ url_for('static', filename='images/icons/location.svg') }}" alt="Адрес">
+                    </div>
+                    <div class="contact-details">
+                        <h3>Адрес</h3>
+                        <p>г. Москва, ул. Примерная, д. 123</p>
+                        <p>ТЦ "Райский", 3 этаж</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="{{ url_for('static', filename='images/icons/phone.svg') }}" alt="Телефон">
+                    </div>
+                    <div class="contact-details">
+                        <h3>Телефон</h3>
+                        <p><a href="tel:+79991234567">+7 (999) 123-45-67</a></p>
+                        <p><a href="tel:+79991234568">+7 (999) 123-45-68</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="{{ url_for('static', filename='images/icons/email.svg') }}" alt="Email">
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@paradise-hookah.ru">info@paradise-hookah.ru</a></p>
+                        <p><a href="mailto:booking@paradise-hookah.ru">booking@paradise-hookah.ru</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="{{ url_for('static', filename='images/icons/clock.svg') }}" alt="Часы работы">
+                    </div>
+                    <div class="contact-details">
+                        <h3>Часы работы</h3>
+                        <p>Понедельник - Четверг: 18:00 - 02:00</p>
+                        <p>Пятница - Суббота: 18:00 - 04:00</p>
+                        <p>Воскресенье: 18:00 - 02:00</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <h3>Мы в социальных сетях</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">Instagram</a>
+                        <a href="#" class="social-icon">Telegram</a>
+                        <a href="#" class="social-icon">VK</a>
+                        <a href="#" class="social-icon">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-section">
+                <h2>Забронировать столик</h2>
+                <form class="contact-form" id="bookingForm">
+                    <div class="form-group">
+                        <label for="name">Ваше имя *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date">Дата *</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="time">Время *</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guests">Количество гостей *</label>
+                            <input type="number" id="guests" name="guests" min="1" max="20" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Дополнительные пожелания</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Особые пожелания, выбор кальяна и т.д."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="map-section">
+            <h2>Как нас найти</h2>
+            <div class="map-placeholder">
+                <img src="{{ url_for('static', filename='images/icons/location.svg') }}" alt="Местоположение" class="map-icon">
+                <p>Карта будет здесь</p>
+                <p>г. Москва, ул. Примерная, д. 123</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+    this.reset();
+});
+</script>
+{% endblock %}
+
