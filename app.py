@@ -99,5 +99,5 @@ def all_testimonials():
     return render_template('testimonials.html', testimonials=testimonials)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run()
 
